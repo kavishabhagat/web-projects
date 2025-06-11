@@ -7,6 +7,8 @@ function register()
         password:password.value}
 
         localStorage.setItem("data",JSON.stringify(data));
+              alert("sign-in succesfull"); 
+
         if (!username.value || !password.value) {
   alert("Please fill in both fields.");
   return;
@@ -25,7 +27,6 @@ function register()
        
       let info=JSON.parse(localStorage.getItem("data"));
 
-      alert("SIGN IN SUCESSFULL!"); 
       if (!username.value || !password.value) {
   alert("Please fill in both fields.");
   return;
@@ -34,7 +35,7 @@ function register()
 
       if(username.value===info.username && password.value===info.password)
       {
-        alert("login sucessfull")
+        alert("log-in sucessfull")
     window.location.href = "todo.html";  
         
       }
