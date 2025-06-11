@@ -1,0 +1,28 @@
+body{
+    background-color: lightpink;
+}
+img {
+    border-style:solid;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+p{
+    text-align:center; 
+    font-size: 100px;
+    color:cornsilk;
+    font-weight: bold;
+    outline-color:  cornsilk;
+    outline-style: solid;
+    outline-width: thick;
+
+
+
+}
+h1{ text-align: center;
+    color:cornsilk;
+    border-style: solid;
+    border-width: thick;
+    border-color: cornsilk;
+}
