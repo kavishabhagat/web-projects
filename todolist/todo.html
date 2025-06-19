@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly To Do List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #1e3c72, #2a5298);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .wave {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: url('https://svgshare.com/i/11wF.svg');
+      background-size: cover;
+      animation: waveMove 30s infinite linear;
+      opacity: 0.2;
+    }
+
+    @keyframes waveMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    .main-heading {
+      font-size: 40px;
+      margin: 40px 0 20px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 2px;
+    }
+
+    .main {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #do {
+      width: 70%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 12px 18px;
+      background-color: #1565c0;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #003c8f;
+      transform: scale(1.05);
+    }
+
+    .sublist {
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      background: rgba(255, 255, 255, 0.8);
+      color: #0d47a1;
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .Delete {
+      background-color: #e53935;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .Delete:hover {
+      background-color: #b71c1c;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wave"></div>
+
+  <h1 class="main-heading">WEEKLY TO DO LIST</h1>
+
+  <div class="main">
+    <input type="text" id="do" placeholder="Enter your task...">
+    <button onclick="doit()">Add</button>
+    <div class="sublist">
+      <ul id="taskList"></ul>
+    </div>
+  </div>
+
+  <script>
+    let arr = [];
+
+    function doit() {
+      let input = document.getElementById("do");
+      let word = input.value.trim();
+
+      if (word === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      arr.push(word);
+      input.value = '';
+      renderList();
+    }
+
+    function renderList() {
+      let strarr = "";
+      for (let i = 0; i < arr.length; i++) {
+        strarr += `<li>${arr[i]}
+        <button onclick="deleteTask(${i})" class="Delete">Delete</button></li>`;
+      }
+
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = strarr;
+    }
+
+    function deleteTask(index) {
+      arr.splice(index, 1);
+      renderList();
+    }
+  </script>
+
+</body>
+</html>
